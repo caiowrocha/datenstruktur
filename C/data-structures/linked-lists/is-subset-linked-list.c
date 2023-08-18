@@ -50,6 +50,7 @@ int main(void) {
         int value;
         scanf("%d", &value);
         first = addNode(first, value);
+        i++;
     };
 
     int j;
@@ -57,6 +58,7 @@ int main(void) {
         int value;
         scanf("%d", &value);
         second  = addNode(first, value);
+        j++;
     };
 
     int isSubset = linkedListIsSubset(first, 6,  second, 6);

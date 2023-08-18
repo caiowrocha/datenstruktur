@@ -50,6 +50,7 @@ int main(void) {
         int value;
         scanf("%d", &value);
         insertNode(0, value, &list);
+        i++;
     };
 
     displayLinkedList(list);

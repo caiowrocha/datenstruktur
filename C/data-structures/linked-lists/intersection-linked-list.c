@@ -48,6 +48,7 @@ int main(void) {
         int value;
         scanf("%d", &value);
         first = addNode(first, value);
+        i++;
     };
 
     int j;
@@ -55,6 +56,7 @@ int main(void) {
         int value;
         scanf("%d", &value);
         second  = addNode(first, value);
+        j++;
     };
 
     Node *intersection = intersectionLinkedList(first, second);

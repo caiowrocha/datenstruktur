@@ -37,6 +37,7 @@ int main(void) {
         int value;
         scanf("%d", &value);
         list = addNode(list, value);
+        i++;
     };
 
     int size = listLength(list);

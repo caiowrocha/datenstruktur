@@ -55,10 +55,13 @@ int main(void) {
         int value;
         scanf("%d", &value);
         list = addNode(list, value);
+        i++;
     };
-    
+
     displayLinkedList(list);
+    printf("\n");
     reverseLinkedList(list);
+    printf("\n");
     displayLinkedList(list);
 
     return 0;

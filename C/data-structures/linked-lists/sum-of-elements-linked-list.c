@@ -26,6 +26,15 @@ Node *addNode(Node *head, int value) {
     return newNode;
 };
 
+int sumLinkedList(Node *head) {
+    int sum = 0;
+    while(head != NULL) {
+        sum += head->value;
+        head = head->next;
+    };
+    return sum;
+}
+
 int main(void) {
 
     Node *list = createLinkedList();
@@ -37,9 +46,10 @@ int main(void) {
         list = addNode(list, value);
         i++;
     };
-
+    
     displayLinkedList(list);
-
+    printf("\n");
+    int sum = sumLinkedList(list);
+    printf("A soma dos elementos é: %d", sum);
     return 0;
 };
-

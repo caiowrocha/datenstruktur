@@ -1,13 +1,13 @@
 const isPrime = n => {
 
-    if(n < 2) return false;
+  if (n < 2) return false;
 
-    const sqrt = Math.sqrt(n);
+  const sqrt = Math.sqrt(n);
 
-    for(let i = 2; i <= sqrt; i++) {
-        if(n % i === 0) return false;
-    };
-    return true;
+  for (let i = 2; i <= sqrt; i++) {
+    if (n % i === 0) return false;
+  };
+  return true;
 };
 
 const test_0 = isPrime(1337);

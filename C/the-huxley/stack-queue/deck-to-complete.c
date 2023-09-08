@@ -28,6 +28,8 @@ node_t* node_new(int value) {
     return new_node;
 }
 
+
+
 deque_t* construct() {
     deque_t *new_deque = (deque_t *)malloc(sizeof(deque_t));
     if (new_deque != NULL) {
@@ -38,12 +40,6 @@ deque_t* construct() {
     return new_deque;
 }
 
-void destruct(deque_t *deque) {
-    if (deque == NULL) return;
-    erase(deque);
-    free(deque);
-}
-
 int size(deque_t *deque) {
     if (deque == NULL) return 0;
     return deque->size;
@@ -51,6 +47,34 @@ int size(deque_t *deque) {
 
 bool empty(deque_t *deque) {
     return (deque == NULL || deque->size == 0);
+}
+
+void dequeue_front(deque_t *deque) {
+    if (empty(deque)) return;
+
+    node_t *temp = deque->front;
+    if (deque->size == 1) {
+        deque->front = NULL;
+        deque->rear = NULL;
+    } else {
+        deque->front = deque->front->next;
+        deque->front->prev = NULL;
+    }
+
+    free(temp);
+    deque->size--;
+}
+
+void erase(deque_t *deque) {
+    while (!empty(deque)) {
+        dequeue_front(deque);
+    }
+}
+
+void destruct(deque_t *deque) {
+    if (deque == NULL) return;
+    erase(deque);
+    free(deque);
 }
 
 int front(deque_t *deque) {
@@ -109,27 +133,6 @@ void dequeue_rear(deque_t *deque) {
     deque->size--;
 }
 
-void dequeue_front(deque_t *deque) {
-    if (empty(deque)) return;
-
-    node_t *temp = deque->front;
-    if (deque->size == 1) {
-        deque->front = NULL;
-        deque->rear = NULL;
-    } else {
-        deque->front = deque->front->next;
-        deque->front->prev = NULL;
-    }
-
-    free(temp);
-    deque->size--;
-}
-
-void erase(deque_t *deque) {
-    while (!empty(deque)) {
-        dequeue_front(deque);
-    }
-}
 
 void print(deque_t *deque) {
     if (empty(deque)) {
@@ -139,28 +142,14 @@ void print(deque_t *deque) {
 
     node_t *current = deque->front;
     while (current != NULL) {
-        printf("%d ", current->value);
+        if(current->next == NULL) {
+          printf("%d", current->value);
+        } else {
+          printf("%d ", current->value);
+        }
         current = current->next;
     }
     printf("\n");
-}
-
-int main() {
-    int N, M, num;
-    scanf("%d", &N);
-    deque_t *deque = construct();
-
-    for (int i = 0; i < N; i++) {
-        scanf("%d", &num);
-        enqueue_rear(deque, num);
-    }
-
-    scanf("%d", &M); // Lê o número de operações M, mas não lê os valores.
-
-    // Aqui você pode realizar as operações de acordo com o valor de M, como enqueue, dequeue, etc.
-
-    destruct(deque);
-    return 0;
 }
 
 int main() {
@@ -176,7 +165,7 @@ int main() {
   	for(i = 0; i < num; ++i)
       	enqueue_rear(deque, vector[i]);
   
- 	printf("%d\n", front(deque));
+ 	  printf("%d\n", front(deque));
   	printf("%d\n", rear (deque));
   
   	if(!empty(deque))
